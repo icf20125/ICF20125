@@ -1,0 +1,186 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PLANTILLA DE LABORATORIO - FÍSICA EXPERIMENTAL
+% UNIVERSIDAD TÉCNICA FEDERICO SANTA MARÍA
+% AUTOR - MICHEL LASTRA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,letterpaper]{article}
+
+% ==========================================
+% 1. PAQUETES BÁSICOS (¡No modificar!)
+% ==========================================
+% ==========================================
+% 1. PAQUETES BÁSICOS (¡No modificar!)
+% ==========================================
+\usepackage[top=3cm, bottom=4cm, left=1cm, right=1cm, headheight=55pt, footskip=70pt]{geometry}
+\usepackage[utf8]{inputenc} % <--- OBLIGA a LaTeX a leer bien los caracteres como ¿ y ñ
+\usepackage[T1]{fontenc}
+\usepackage{textcomp} % <--- Repara los símbolos que se mapean mal como la £
+\usepackage{lmodern}
+\usepackage[spanish, es-tabla]{babel} % <--- Quitamos el obsoleto 'activeacute'
+\usepackage{fancyhdr} 
+\usepackage{graphicx} 
+\usepackage{float} 
+\usepackage{caption} 
+\usepackage{amsmath, amssymb} 
+\usepackage{booktabs} 
+\usepackage{siunitx} 
+\usepackage[colorlinks,citecolor=blue,linkcolor=red]{hyperref} 
+\usepackage{csquotes} 
+\usepackage[style=apa, backend=biber]{biblatex} 
+\addbibresource{Referencias.bib}
+
+\sisetup{
+  output-decimal-marker = {,},
+  group-digits = false,
+  per-mode = symbol
+}
+
+% ==========================================
+% 2. ZONA DE DATOS DEL ESTUDIANTE
+% (¡Reemplaza los datos entre las llaves!)
+% ==========================================
+\newcommand{\titu}{TÍTULO DEL EXPERIMENTO} 
+\newcommand{\autorUno}{Nombre Apellido Uno}
+\newcommand{\autorDos}{Nombre Apellido Dos}
+\newcommand{\correoUno}{correo1@sansano.usm.cl}
+\newcommand{\correoDos}{correo2@sansano.usm.cl}
+\newcommand{\semestre}{Primer semestre 2026}
+
+% ==========================================
+% 3. CONFIGURACIÓN AUTOMÁTICA (¡No tocar!)
+% ==========================================
+\newcommand{\universidad}{Universidad Técnica Federico Santa María}
+\newcommand{\campus}{Campus San Joaquín}
+\newcommand{\lab}{Física Experimental} 
+\newcommand{\filiacion}{\textit{Departamento de Física, \universidad, \campus, Chile}}
+
+\renewcommand{\maketitle}{
+    \thispagestyle{fancy}
+    \begin{center}
+        \begin{Large}
+            \textbf{\titu}\\
+        \end{Large}
+        \vspace{0.5cm}
+        \begin{tabular}{c}
+            {\textit{Autores.} \autorUno$^1$, \autorDos$^1$}\\
+        \end{tabular}\\
+        \vspace{0.2cm}
+        {\small $^1$\filiacion}
+    \end{center}
+    \vspace{0.3cm}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[width=2.32cm]{Logo_Universidad.png}}
+\fancyhead[R]{{\small
+\begin{tabular}[b]{@{}r@{}}
+\universidad \\
+\campus \\
+\lab \\
+\semestre
+\end{tabular}}}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headsep}{25pt}
+
+\fancyfoot[L]{\autorUno}
+\fancyfoot[R]{\autorDos}
+\fancyfoot[C]{\thepage}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% ==========================================
+% 4. INICIO DEL INFORME
+% ==========================================
+\begin{document}
+
+\maketitle
+
+% --- RESUMEN ---
+\begin{abstract}
+El resumen debe ser un único párrafo conciso (aprox. 10-15 líneas) que responda a tres preguntas fundamentales: ¿Qué se hizo?, ¿Cómo se hizo? y ¿Cuáles fueron los resultados numéricos principales? No incluyas explicaciones teóricas largas aquí. 
+
+\textit{Ejemplo:} En el presente estudio se analizó experimentalmente la dinámica de sistemas oscilatorios amortiguados. Se empleó un sistema de carros sobre un riel de baja fricción, registrando la cinemática mediante un sensor VideoCom. Se determinó experimentalmente el coeficiente de amortiguamiento $\gamma = (0,0076 \pm 0,0001)\text{ s}^{-1}$ y la frecuencia angular $\omega'_{exp} = (6,2526 \pm 0,0003) \text{ rad/s}$. Estos valores resultaron en un factor de calidad $Q \approx (411\pm 8,5)$, confirmando la mínima disipación de energía del sistema.
+\end{abstract}
+
+% --- INTRODUCCIÓN TEÓRICA ---
+\section{Introducción Teórica}
+
+En esta sección debes presentar los fundamentos físicos que explican el fenómeno a estudiar. Debes definir los conceptos clave (ej. oscilación, fuerzas disipativas, factor de calidad) y presentar los modelos matemáticos que usarás más adelante para comparar con tus datos. Recuerda redactar siempre en tercera persona (ej. "se observa", "se asume", no "nosotros observamos").
+
+Aquí debes incluir las ecuaciones relevantes numeradas. Por ejemplo, la ecuación de movimiento para un oscilador amortiguado se modela como:
+\begin{equation}
+    m\ddot{x} + b\dot{x} + k_{eq}x = 0
+    \label{eq:movimiento}
+\end{equation}
+Donde $m$ es la masa, $b$ el coeficiente de amortiguamiento y $k_{eq}$ la constante elástica. Al escribir tus resultados, siempre deberás justificar cómo calculaste tus errores. Presenta aquí la fórmula de propagación de errores:
+\begin{equation}
+    \Delta f(x,y) = \sqrt{\left(\frac{\partial f}{\partial x}\cdot\Delta x\right)^2 + \left(\frac{\partial f}{\partial y}\cdot\Delta y\right)^2}
+    \label{eq:propagacion}
+\end{equation}
+
+% --- METODOLOGÍA ---
+\section{Metodología}
+
+La metodología describe el montaje experimental y el procedimiento paso a paso. Debe ser lo suficientemente detallada para que otro estudiante pueda replicar tu experimento. Menciona los instrumentos utilizados (ej. sensor VideoCom, bomba de aire, carros con masas específicas) y sus configuraciones (ej. frecuencia de muestreo, distancias).
+
+% ==========================================
+% MINI-TUTORIAL: CÓMO INSERTAR IMÁGENES
+% ==========================================
+% 1. Sube tu imagen (ej. 'montaje.png') a la misma carpeta que este archivo .tex.
+% 2. Usa el entorno 'figure'. El parámetro [H] fuerza a la imagen a quedarse 
+%    EXACTAMENTE en la parte del texto donde pusiste el código.
+% 3. \includegraphics define el tamaño. width=0.8\linewidth significa que 
+%    ocupará el 80% del ancho de la página.
+% 4. \caption es la leyenda que va debajo de la imagen. ¡Toda imagen debe tener una!
+% 5. \label crea una "etiqueta" invisible para que puedas referenciar la imagen en tu texto.
+%
+% Descomenta (quita los %) las siguientes líneas para ver el ejemplo:
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.8\linewidth]{montaje.png}
+%     \caption{Esquema del montaje experimental del sistema acoplado sobre riel de bajo roce.}
+%     \label{fig:montaje_acoplado}
+% \end{figure}
+
+Como se puede observar en la Figura (recuerda siempre mencionar tus figuras en el texto), el sistema base consistió en un riel de bajo roce de 2 metros conectado a una bomba de aire...
+
+% --- RESULTADOS Y ANÁLISIS ---
+\section{Resultados y Análisis}
+
+Esta es la sección más importante del informe. Aquí no solo debes "tirar" los datos, sino procesarlos y explicarlos. Si realizaste linealizaciones, debes mostrar el gráfico resultante y la ecuación de ajuste empírico obtenida. 
+
+Presenta tus datos crudos más relevantes en tablas. Toda tabla debe estar numerada, tener un título descriptivo y ser mencionada en el texto.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{cc}
+        \toprule
+        \textbf{Tiempo $\pm$ 0,001 [s]} & \textbf{Posición Horizontal $\pm$ 0,0001 [m]} \\
+        \midrule
+        0,000 & 0,1470 \\
+        0,100 & 0,1499 \\
+        0,200 & 0,1676 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Muestra de los datos cinemáticos obtenidos a partir del software VideoCom.}
+    \label{tab:datos_cinematicos}
+\end{table}
+
+A partir de los datos de la Tabla \ref{tab:datos_cinematicos}, se aplicó el método de linealización... (continúa tu análisis aquí, comparando siempre tus valores experimentales con los teóricos e indicando el porcentaje de error comparativo).
+
+% --- CONCLUSIONES ---
+\section{Conclusiones}
+
+Las conclusiones deben ser directas y apoyarse netamente en tus resultados numéricos (no inventes conclusiones de las que no tengas pruebas empíricas). 
+1. ¿Se cumplió el objetivo del experimento? 
+2. Menciona los resultados finales más importantes.
+3. Discute el porcentaje de error y sus causas: ¿Hubo error de paralaje al analizar un video? ¿Fricción residual que no se consideró en el modelo ideal? Diferencia entre error sistemático y aleatorio en tu montaje.
+
+% --- BIBLIOGRAFÍA ---
+% Esto imprimirá automáticamente las referencias que estén en tu archivo Referencias.bib
+\nocite{*} 
+\printbibliography
+
+\end{document}
